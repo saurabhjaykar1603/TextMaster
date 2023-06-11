@@ -7,14 +7,14 @@ function TextForm(props) {
         let newText = text.toUpperCase();
         setText(newText)
     }
-    
+
     const handleLoClick = () => {
         let newText = text.toLocaleLowerCase();
         setText(newText)
     }
 
     const handleClearClick = () => {
-       
+
         setText('');
     }
 
@@ -23,6 +23,19 @@ function TextForm(props) {
     const handleOnChange = (e) => {
         console.log('Upeercase was clicked')
         setText(e.target.value)
+    }
+
+    // copy text func 
+    const handleCopy = () => {
+        let text = document.getElementById('myBox');
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+
+    // remove Extra Spaces 
+    const handleExtraSpaces = ()=>{
+        const newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
     }
 
     const [text, setText] = useState('');
@@ -37,6 +50,8 @@ function TextForm(props) {
             <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Lowercase</button>
             <button className="btn btn-danger mx-2" onClick={handleClearClick}>Clear Text</button>
+            <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
+            <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Spaces</button>
         </div>
             <div className="container my-3">
                 <h2>Your Text Summary</h2>
