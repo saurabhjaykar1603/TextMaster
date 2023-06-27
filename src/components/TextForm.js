@@ -6,16 +6,21 @@ function TextForm(props) {
         console.log('Upeercase was clicked' + text)
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to uppercase","success");
     }
 
     const handleLoClick = () => {
         let newText = text.toLocaleLowerCase();
         setText(newText)
+        props.showAlert("Converted to lowerercase","success");
+
     }
 
     const handleClearClick = () => {
 
         setText('');
+        props.showAlert("Text has been Clear","danger");
+
     }
 
 
@@ -30,12 +35,16 @@ function TextForm(props) {
         let text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to Clipboard","success");
+
     }
 
     // remove Extra Spaces 
     const handleExtraSpaces = () => {
         const newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        props.showAlert("Extra spaces removed","success");
+
     }
 
     const [text, setText] = useState('');
